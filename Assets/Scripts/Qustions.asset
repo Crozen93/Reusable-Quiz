@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c7c18a915379d4ba4ef3b32f9ce9ac, type: 3}
+  m_Name: Qustions
+  m_EditorClassIdentifier: 
+  qustionSets:
+  - level: 0
+    questions:
+    - questinType: 0
+      questionText: What the color?
+      questionImage: {fileID: 0}
+      qustionAudio: {fileID: 0}
+      correctAnswerKey: Grey
+      answerChoices:
+      - Red
+      - Gray
+      - Blue
+      - Grey
+    - questinType: 1
+      questionText: what the color on picture
+      questionImage: {fileID: 21300000, guid: 002a3a15cd6d8544e92e3c1ad2da52a4, type: 3}
+      qustionAudio: {fileID: 0}
+      correctAnswerKey: Magenta
+      answerChoices:
+      - White
+      - Black
+      - Magenta
+      - Blue
+  - level: 1
+    questions:
+    - questinType: 1
+      questionText: what country?
+      questionImage: {fileID: 21300000, guid: bdb1b200ceebd6c4086160acf9a1f50e, type: 3}
+      qustionAudio: {fileID: 0}
+      correctAnswerKey: Germany
+      answerChoices:
+      - Germany
+      - Japan
+      - China
+    - questinType: 2
+      questionText: what instrument ?
+      questionImage: {fileID: 0}
+      qustionAudio: {fileID: 8300000, guid: 7d5f04e4d820e2449a516d41d1f6531a, type: 3}
+      correctAnswerKey: Germany
+      answerChoices:
+      - Germany
+      - Japan
+      - China

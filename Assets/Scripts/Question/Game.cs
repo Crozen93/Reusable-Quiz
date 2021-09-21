@@ -12,9 +12,15 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     private Transform questionPanel;
-    
+    [SerializeField]
+    private Transform answerPanel;
+    [SerializeField]
+    private Transform scoreScreen, questionScreen;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI scoreStats, scorePercentage;
 
     private int correctAnswer;
+
     private void Start()
     {
         level = PlayerPrefs.GetInt("level", 0);
@@ -26,6 +32,14 @@ public class Game : MonoBehaviour
     {
         currentQuestonSet = questionDataBase.GetQuestionSet(level);
         currentQueston = currentQuestonSet.questions[0];
+    }
+
+    void ClearAnswers()
+    {
+        foreach (Transform buttons in answerPanel)
+        {
+            Destroy(buttons.gameObject);
+        }
     }
 
     void UseQuestionTemplate(Question.QuestinType questinType)
@@ -43,17 +57,22 @@ public class Game : MonoBehaviour
         }
     }
 
-    void NextQuestionSet()
+    public void NextQuestionSet()
     {
         if (level < questionDataBase.qustionSets.Length - 1)
         {
+            correctAnswer = 0;
+            currentQuestionIndex = 0; 
             level++;
-            PlayerPrefs.SetInt("level", level);
+            PlayerPrefs.SetInt("level", level);            
+            scoreScreen.gameObject.SetActive(false);
+            questionScreen.gameObject.SetActive(true);
             LoadQuestionSet();
+            UseQuestionTemplate(currentQueston.questinType);
         }
         else
         {
-            //load start menu
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         }
     }
 
@@ -68,6 +87,10 @@ public class Game : MonoBehaviour
         else
         {
             //do score screen stuff
+            scoreScreen.gameObject.SetActive(true);
+            questionScreen.gameObject.SetActive(false);
+            scorePercentage.text = string.Format("Score: \n{0}%", (float)correctAnswer/(float)currentQuestonSet.questions.Count * 100);
+            scoreStats.text = string.Format("Questions: {0}\nCorrect: {1}", currentQuestonSet.questions.Count, correctAnswer);
         }
     }
 
@@ -79,6 +102,7 @@ public class Game : MonoBehaviour
             Debug.Log("That Correct!");
         }
 
+        ClearAnswers();
         NextQuestion();
         //next question
         //reset answer options

@@ -1,2 +1,2 @@
-# Quiz-Course
+# Quiz
  Unity3d
